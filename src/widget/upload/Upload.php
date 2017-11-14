@@ -87,18 +87,22 @@ class Upload extends InputWidget
             $this->maxNumberOfFiles = 1;
         }
         if (!$this->url) {
-            foreach (Yii::$app->getModules() as $key => $module) {
-                if (trim($module::className(), '\\') == trim('myzero1\yii2upload' , '\\')) {
-                    $moduleId = $module->id;
+            foreach (Yii::$app->getModules() as $key => $mModule) {
+                if (is_array($mModule)) {
+                    if (trim($mModule['class'], '\\') == 'myzero1\yii2upload\Tools') {
+                        $moduleId = $key;
+                    }
+                } else {
+                    if (trim($mModule::className(), '\\') == 'myzero1\yii2upload\Tools') {
+                        $moduleId = $mModule->id;
+                    }
                 }
             }
-
             if (isset($moduleId)) {
                 $this->url = ["/$moduleId/upload/upload"];
             } else {
                 var_dump('请在项目配置文件中，配置yii2-upload模块');exit;
             }
-
         }
         if (!$this->maxFileSize) {
             $this->maxFileSize = 200 * 1024;
