@@ -28,7 +28,7 @@ to the require section of your `composer.json` file.
 Setting
 -----
 
-Once the extension is installed, simply modify your application configuration as follows:
+Once the module is installed, simply modify your application configuration as follows:
 
 ```php
 return [
