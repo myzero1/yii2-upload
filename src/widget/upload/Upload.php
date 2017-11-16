@@ -160,7 +160,7 @@ class Upload extends InputWidget
             $acceptFileTypes = new \yii\web\JsExpression($regexp);
         }
 
-        $classNS = explode('\\', $this->model::className());
+        $classNS = explode('\\', get_class($this->model));
         $className = array_pop($classNS);
         $targetId = sprintf('%s-%s', strtolower($className), $this->attribute);
 
