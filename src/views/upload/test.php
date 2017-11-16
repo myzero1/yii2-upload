@@ -1,11 +1,11 @@
 
 <?php
 
-$model = new \backend\models\Product();
+$model = new \common\models\User();
 
 echo \myzero1\yii2upload\widget\upload\Upload::widget([
     'model' => $model,
-    'attribute' => 'logo',
+    'attribute' => 'id',
     // 'url' => ['/tools/upload/upload'], // default ['/tools/upload/upload'],
     // 'sortable' => true,
     // 'maxFileSize' => 200  * 1024, // 200k
