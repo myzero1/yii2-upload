@@ -32,10 +32,13 @@ Once the extension is installed, simply modify your application configuration as
 
 ```php
 return [
-    'bootstrap' => ['gii'],
     'modules' => [
-        'gii' => [
-            'class' => 'myzero1\yii2giiplus\Module',
+        'upload' => [
+            'class' => 'myzero1\yii2upload\Tools',
+            'upload' => [
+                'basePath' => '@webroot/upload',
+                'baseUrl' => '@web/upload',
+            ],
         ],
         // ...
     ],
@@ -46,31 +49,57 @@ return [
 Usage
 -----
 
-You can then access Gii through the following URL:
+Add upload widget like following:
 
 ```
-http://localhost/path/to/index.php?r=gii
+
+echo \myzero1\yii2upload\widget\upload\Upload::widget([
+    'model' => $model,
+    'attribute' => 'logo',
+    // 'url' => ['/tools/upload/upload'], // default ['/tools/upload/upload'],
+    // 'sortable' => true,
+    // 'maxFileSize' => 200  * 1024, // 200k
+    // 'minFileSize' => 1 * 1024, // 1k
+    // 'maxNumberOfFiles' => 1, // default 1,
+    // 'acceptFileTypesNew' => [], // default ['gif','jpeg','jpg','png'],
+    // 'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpe?g|png)$/i'),// if it is null，the acceptFileTypesNew will working.
+    // 'showPreviewFilename' => false,
+    // 'clientOptions' => []
+]);
+
+
+```
+
+
+Add upload widget like following:
+
+```
+
+echo \myzero1\yii2upload\widget\upload\Upload::widget([
+    'model' => $model,
+    'attribute' => 'logo',
+    // 'url' => ['/tools/upload/upload'], // default ['/tools/upload/upload'],
+    // 'sortable' => true,
+    // 'maxFileSize' => 200  * 1024, // 200k
+    // 'minFileSize' => 1 * 1024, // 1k
+    // 'maxNumberOfFiles' => 1, // default 1,
+    // 'acceptFileTypesNew' => [], // default ['gif','jpeg','jpg','png'],
+    // 'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpe?g|png)$/i'),// if it is null，the acceptFileTypesNew will working.
+    // 'showPreviewFilename' => false,
+    // 'clientOptions' => []
+]);
+
+
+```
+
+You can then access Upload testing through the following URL:
+
+```
+http://localhost/path/to/index.php?r=upload/upload/test
 ```
 
 or if you have enabled pretty URLs, you may use the following URL:
 
 ```
-http://localhost/path/to/index.php/gii
-```
-
-Using the same configuration for your console application, you will also be able to access Gii via
-command line as follows,
-
-```
-# change path to your application's base path
-cd path/to/AppBasePath
-
-# show help information about Gii
-yii help gii
-
-# show help information about the model generator in Gii
-yii help gii/model
-
-# generate City model from city table
-yii gii/model --tableName=city --modelClass=City
+http://localhost/path/to/index.php/upload/upload/test
 ```
