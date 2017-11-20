@@ -147,6 +147,17 @@ class Upload extends InputWidget
                 $file['base_url'] = implode('/', $parseUrl);
                 $file['url'] = $this->value;
 
+                // application/octet-stream
+                // image/jpg
+                $aImagesSuffix = ['gif','jpeg','jpg','png', 'gif'];
+                $aSuffix = explode('.', $file['name']);
+                $sSuffix = array_pop($aSuffix);
+                if (in_array($sSuffix, $aImagesSuffix)) {
+                    $file['type'] = 'image/' . $sSuffix;
+                } else {
+                    $file['type'] = 'application/octet-stream';
+                }
+
                 $this->value = $file;
 
             } else {
