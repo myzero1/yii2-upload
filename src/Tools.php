@@ -26,6 +26,7 @@ class Tools extends \yii\base\Module
 
         // custom initialization code goes here
         $this->addUpload();
+        \Yii::$classMap['yii\validators\FileValidator'] = '@vendor/myzero1/yii2-upload/src/components/FileValidator.php'; // fix apk
 
     }
 
